@@ -1,7 +1,7 @@
 //animación que cambia el color de match game
 function colorMatch(selector) {
 	$(selector).animate({
-			opacity: '0.5',
+			opacity: '0.9',
 		}, {
 			step: function () {
 				$(this).css('color', 'red');
@@ -9,16 +9,17 @@ function colorMatch(selector) {
 			queue: true
 		})
 		.animate({
-			opacity: '1'
+			opacity: '0.9'
 		}, {
 			step: function () {
 				$(this).css('color', 'blue');
 			},
 			queue: true
-		}, 600)
-		.delay(1000)
+		}, 1000)
+		.delay(1500)
+		
 		.animate({
-			opacity: '1'
+			opacity: '0.9'
 		}, {
 			step: function () {
 				$(this).css('color', 'red');
@@ -26,7 +27,7 @@ function colorMatch(selector) {
 			queue: true
 		})
 		.animate({
-			opacity: '1'
+			opacity: '0.9'
 		}, {
 			step: function () {
 				$(this).css('color', 'blue');
