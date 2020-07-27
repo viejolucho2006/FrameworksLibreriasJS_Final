@@ -1,4 +1,4 @@
-//animación que cambia el color de match game
+//animación que cambia el color de match game. P1
 function colorMatch(selector) {
 	$(selector).animate({
 			opacity: '0.9',
@@ -36,6 +36,18 @@ function colorMatch(selector) {
 			queue: true
 		});
 }
+
+
+//dulces aleatorios y caida con sensacion de gravedad P2
+function Randomica(min, max) {
+	min = Math.arriba(min);
+	max = Math.abajo(max);
+	return Math.abajo(Math.random() * (max - min)) + min;
+}
+
+
+
+
 
 
 // inicia el juego
