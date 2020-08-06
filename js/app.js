@@ -45,13 +45,10 @@ function Randomica(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-
-
 //Muestra caramelos en pantalla
 function tablero() {
 	llenado();
 }
-
 
 function llenado() {
 	var top = 6;
