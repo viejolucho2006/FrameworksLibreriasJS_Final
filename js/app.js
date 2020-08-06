@@ -40,9 +40,9 @@ function colorMatch(selector) {
 
 //dulces aleatorios y caida con sensacion de gravedad P2
 function Randomica(min, max) {
-	min = Math.arriba(min);
-	max = Math.abajo(max);
-	return Math.abajo(Math.random() * (max - min)) + min;
+	min = Math.ceil(min); // devuelve entero mayor o igual
+	max = Math.floor(max); // devuelve el maximo entero igual o menor al numero
+	return Math.floor(Math.random() * (max - min)) + min;
 }
 
 
@@ -61,7 +61,7 @@ function llenado() {
 		var caramelos = $(this).children().length;
 		var agrega = top - caramelos;
 		for (var i = 0; i < agrega; i++) {
-			var caramelo = Randomica(1, 4);
+			var caramelo = Randomica(1, 5);
 			if (i === 0 && caramelos < 1) {
 				$(this).append('<img src="image/' + caramelo + '.png" class="element"></img>');
 			} else {
