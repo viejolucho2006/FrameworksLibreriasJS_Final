@@ -1,4 +1,4 @@
-//animación que cambia el color de match game. P1
+//Punto1 animación que cambia el color de match game.
 function colorMatch(selector) {
 	$(selector).animate({
 			opacity: '0.9',
@@ -38,12 +38,67 @@ function colorMatch(selector) {
 }
 
 
-//dulces aleatorios y caida con sensacion de gravedad P2
+//Punto2 dulces aleatorios y caida con sensacion de gravedad
 function Randomica(min, max) {
 	min = Math.ceil(min); // devuelve entero mayor o igual
 	max = Math.floor(max); // devuelve el maximo entero igual o menor al numero
 	return Math.floor(Math.random() * (max - min)) + min;
 }
+
+//guardar información de filas o columnas
+function arregloDulces(arrayType, index) {
+	var col1 = $('.col-1').children();
+	var col2 = $('.col-2').children();
+	var col3 = $('.col-3').children();
+	var col4 = $('.col-4').children();
+	var col5 = $('.col-5').children();
+	var col6 = $('.col-6').children();
+	var col7 = $('.col-7').children();
+
+	var agrupaCol =$([
+		col1,
+		col2,
+		col3,
+		col4,
+		col5,
+		col6,
+		col7
+	]);
+	
+	if (typeof index== 'number') {
+		var agrupaFil = $([
+			col1.eq(index),
+			col2.eq(index),
+			col3.eq(index),
+			col4.eq(index),
+			col5.eq(index),
+			col6.eq(index),
+			col7.eq(index),
+		]);
+	} else{
+		index = '';
+	}
+
+	if (arrayType == 'columnas'){
+		return agrupaCol;
+	}else if (arrayType == 'filas' && index !== '') {
+		return agrupaFil;
+	}
+} 
+
+
+// organizar las filas y columnas
+function Filas(index) {
+	var fila = arregloDulces('filas', index);
+	return fila;
+}
+
+function Columnas(index) {
+	var columna = arregloDulces('columnas');
+	return columna[index];
+}
+
+
 
 //Muestra caramelos en pantalla
 function tablero() {
