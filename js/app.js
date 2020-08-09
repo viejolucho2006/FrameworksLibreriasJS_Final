@@ -134,6 +134,11 @@ function moverDulce(){
 		grid: [75, 75],
 		zIndex: 15,
 	});
+	
+	$('img').droppable({  //llamar  a la funcion de intercambio
+		drop: intecambioC
+	});
+	
 	activarMover();
 }
 
@@ -142,6 +147,16 @@ function activarMover() {
 	$('img').droppable('enable');
 }
 
+//Cuando arrastramos el caramelo reemplaza en la posicion para intercambio
+function intecambioC(event, arrastre) {
+	var arrastre = $(arrastre.draggable);
+	var arrastreO = arrastre.attr('src');
+	var soltar = $(this);
+	var soltarO = soltar.attr('src');
+	arrastre.attr('src', soltarO);
+	soltar.attr('src', arrastreO);
+
+}
 
 
 
