@@ -121,7 +121,28 @@ function llenado() {
 			}
 		}
 	});
+	moverDulce();
 }
+
+
+// Efectos de movimiento.
+function moverDulce(){
+	$('img').draggable({
+		containment: '.panel-tablero',
+		droppable: 'img',
+		revert: true,
+		grid: [75, 75],
+		zIndex: 15,
+	});
+	activarMover();
+}
+
+function activarMover() {
+	$('img').draggable('enable');
+	$('img').droppable('enable');
+}
+
+
 
 
 
