@@ -228,9 +228,15 @@ function llenado() {
 		}
 	});
 	moverDulce();
+	revisaCol();
 }
 
 
+// verifica los caramelos que se pueden borrar
+function verificarCar() {
+	revisaCol();
+	
+}
 
 
 
