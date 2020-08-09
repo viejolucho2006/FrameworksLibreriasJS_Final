@@ -38,6 +38,10 @@ function colorMatch(selector) {
 }
 
 
+
+
+
+
 //Punto2 dulces aleatorios y caida con sensacion de gravedad
 function Randomica(min, max) {
 	min = Math.ceil(min); // devuelve entero mayor o igual
@@ -86,7 +90,6 @@ function arregloDulces(arrayType, index) {
 	}
 } 
 
-
 // organizar las filas y columnas
 function Filas(index) {
 	var fila = arregloDulces('filas', index);
@@ -99,30 +102,72 @@ function Columnas(index) {
 }
 
 
+//Revisar los dulces que se eliminaran en la columna
+function revisaCol() {
+	for (var j = 0; j < 7; j++) {
+		var counter = 0;
+		var posicionCar = [];
+		var posicion2 = [];
+		var columna = Columnas(j);
+		var compara = columna.eq(0);
+		var espacio = false;
+		for (var i = 1; i < columna.length; i++) {
+			var origenComp = compara.attr('src');
+			var origenC = columna.eq(i).attr('src');
 
-//Muestra caramelos en pantalla
-function tablero() {
-	llenado();
-}
-
-function llenado() {
-	var top = 6;
-	var column = $('[class^="col-"]');
-
-	column.each(function () {
-		var caramelos = $(this).children().length;
-		var agrega = top - caramelos;
-		for (var i = 0; i < agrega; i++) {
-			var caramelo = Randomica(1, 5);
-			if (i === 0 && caramelos < 1) {
-				$(this).append('<img src="image/' + caramelo + '.png" class="element"></img>');
+			if (origenComp != origenC) {
+				if (posicionCar.length >= 3) {
+					espacio = true;
+				} else {
+					posicionCar = [];
+				}
+				counter = 0;
 			} else {
-				$(this).find('img:eq(0)').before('<img src="image/' + caramelo + '.png" class="element"></img>');
+				if (counter == 0) {
+					if (!espacio) {
+						posicionCar.push(i - 1);
+					} else {
+						posicion2.push(i - 1);
+					}
+				}
+				if (!espacio) {
+					posicionCar.push(i);
+				} else {
+					posicion2.push(i);
+				}
+				counter += 1;
 			}
+			compara = columna.eq(i);
 		}
-	});
-	moverDulce();
+		if (posicion2.length > 2) {
+			posicionCar = $.merge(posicionCar, posicion2);
+		}
+		if (posicionCar.length <= 2) {
+			posicionCar = [];
+		}
+		
+	}
 }
+function borraCol(posicionCar, columna) {
+	for (var i = 0; i < posicionCar.length; i++) {
+		columna.eq(posicionCar[i]).addClass('delete');
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Efectos de movimiento.
@@ -157,6 +202,37 @@ function intecambioC(event, arrastre) {
 	soltar.attr('src', arrastreO);
 
 }
+
+
+
+
+//Muestra caramelos en pantalla
+function tablero() {
+	llenado();
+}
+
+function llenado() {
+	var top = 6;
+	var column = $('[class^="col-"]');
+
+	column.each(function () {
+		var caramelos = $(this).children().length;
+		var agrega = top - caramelos;
+		for (var i = 0; i < agrega; i++) {
+			var caramelo = Randomica(1, 5);
+			if (i === 0 && caramelos < 1) {
+				$(this).append('<img src="image/' + caramelo + '.png" class="element"></img>');
+			} else {
+				$(this).find('img:eq(0)').before('<img src="image/' + caramelo + '.png" class="element"></img>');
+			}
+		}
+	});
+	moverDulce();
+}
+
+
+
+
 
 
 
