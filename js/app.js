@@ -213,13 +213,6 @@ function borraFil(posicionCar, fila) {
 
 
 
-
-
-
-
-
-
-
 // Efectos de movimiento.
 function moverDulce(){
 	$('img').draggable({
@@ -254,6 +247,12 @@ function intecambioC(event, arrastre) {
 }
 
 
+// verifica los caramelos que se pueden borrar
+function validarIguales() {
+	revisaCol();
+	revisaFil();
+	
+}
 
 
 
@@ -280,15 +279,11 @@ function llenado() {
 		}
 	});
 	moverDulce();
-	revisaCol();
+	validarIguales();
 }
 
 
-// verifica los caramelos que se pueden borrar
-function verificarCar() {
-	revisaCol();
-	
-}
+
 
 
 
