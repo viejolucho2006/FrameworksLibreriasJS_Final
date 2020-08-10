@@ -156,7 +156,57 @@ function borraCol(posicionCar, columna) {
 
 
 
+//Revisar los dulces que se eliminaran en la fila
+function revisaFil() {
+	for (var j = 0; j < 7; j++) {
+		var counter = 0;
+		var posicionCar = [];
+		var posicion2 = [];
+		var fila = Columnas(j);
+		var compara = fila.eq(0);
+		var espacio = false;
+		for (var i = 1; i < fila.length; i++) {
+			var origenComp = compara.attr('src');
+			var origenC = fila.eq(i).attr('src');
 
+			if (origenComp != origenC) {
+				if (posicionCar.length >= 3) {
+					espacio = true;
+				} else {
+					posicionCar = [];
+				}
+				counter = 0;
+			} else {
+				if (counter == 0) {
+					if (!espacio) {
+						posicionCar.push(i - 1);
+					} else {
+						posicion2.push(i - 1);
+					}
+				}
+				if (!espacio) {
+					posicionCar.push(i);
+				} else {
+					posicion2.push(i);
+				}
+				counter += 1;
+			}
+			compara = fila.eq(i);
+		}
+		if (posicion2.length > 2) {
+			posicionCar = $.merge(posicionCar, posicion2);
+		}
+		if (posicionCar.length <= 2) {
+			posicionCar = [];
+		}
+		
+	}
+}
+function borraFil(posicionCar, fila) {
+	for (var i = 0; i < posicionCar.length; i++) {
+		fila.eq(posicionCar[i]).addClass('delete');
+	}
+}
 
 
 
@@ -202,6 +252,8 @@ function intecambioC(event, arrastre) {
 	soltar.attr('src', arrastreO);
 
 }
+
+
 
 
 
