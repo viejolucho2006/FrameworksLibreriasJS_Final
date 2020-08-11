@@ -314,21 +314,20 @@ function intecambioC(event, arrastre) {
 	var arrastreO = arrastre.attr('src');
 	var soltar = $(this);
 	var soltarO = soltar.attr('src');
-	arrastre.attr('src', arrastreO );
-	soltar.attr('src', soltarO);
-	
+	arrastre.attr('src', soltarO);
+	soltar.attr('src', arrastreO);
+
 	setTimeout(function () {
 		tablero();
 		if ($('img.delete').length === 0) {
 			arrastre.attr('src', arrastreO);
 			soltar.attr('src', soltarO);
 		} else {
-			updateMoves();
+			puntosL();
 		}
 	}, 500);
-	
-}
 
+}
 
 //Si los elementos se juntan desaparecen automaticamente
 function comprobar(result) {
@@ -337,6 +336,13 @@ function comprobar(result) {
 	}
 }
 
+
+//puntuacion por line
+function puntosL() {
+	var inicial = Number($('#movimientos-text').text());
+	var resultado = inicial += 1;
+	$('#movimientos-text').text(resultado);
+}
 
 function borradoAutomatico() {
 	desactivarMover();
