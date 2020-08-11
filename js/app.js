@@ -145,6 +145,11 @@ function revisaCol() {
 		if (posicionCar.length <= 2) {
 			posicionCar = [];
 		}
+		contar = posicionCar.length;
+		if (contar >= 3) {
+			borraCol(posicionCar, columna);
+			puntuacion(contar);
+		}
 		
 	}
 }
@@ -199,6 +204,11 @@ function revisaFil() {
 		if (posicionCar.length <= 2) {
 			posicionCar = [];
 		}
+		contar = posicionCar.length;
+		if (contar >= 3) {
+			borraFil(posicionCar, fila);
+			puntuacion(contar);
+		}
 		
 	}
 }
@@ -206,6 +216,29 @@ function borraFil(posicionCar, fila) {
 	for (var i = 0; i < posicionCar.length; i++) {
 		fila.eq(posicionCar[i]).addClass('delete');
 	}
+}
+
+
+//Puntuacion del juego
+function puntuacion(contar) {
+	var puntos = Number($('#puntos-text').text());
+	switch (contar) {
+		case 3:
+			puntos += 25;
+			break;
+		case 4:
+			puntos += 50;
+			break;
+		case 5:
+			puntos += 75;
+			break;
+		case 6:
+			puntos += 100;
+			break;
+		case 7:
+			puntos += 200;
+	}
+	$('#score-text').text(puntos);
 }
 
 
