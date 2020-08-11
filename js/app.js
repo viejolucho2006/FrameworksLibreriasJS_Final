@@ -160,16 +160,16 @@ function borraCol(posicionCar, columna) {
 
 //Revisar los dulces que se eliminaran en la fila
 function revisaFil() {
-	for (var j = 0; j < 7; j++) {
+	for (var j = 0; j < 6; j++) {
 		var counter = 0;
 		var posicionCar = [];
 		var posicion2 = [];
-		var fila = Columnas(j);
-		var compara = fila.eq(0);
+		var fila = Filas(j);
+		var compara = fila[0];
 		var espacio = false;
 		for (var i = 1; i < fila.length; i++) {
 			var origenComp = compara.attr('src');
-			var origenC = fila.eq(i).attr('src');
+			var origenC = fila[i].attr('src');
 
 			if (origenComp != origenC) {
 				if (posicionCar.length >= 3) {
@@ -193,7 +193,7 @@ function revisaFil() {
 				}
 				counter += 1;
 			}
-			compara = fila.eq(i);
+			compara = fila[i];
 		}
 		if (posicion2.length > 2) {
 			posicionCar = $.merge(posicionCar, posicion2);
@@ -206,14 +206,14 @@ function revisaFil() {
 			borraFil(posicionCar, fila);
 			puntuacion(contar);
 		}
-		
 	}
 }
 function borraFil(posicionCar, fila) {
 	for (var i = 0; i < posicionCar.length; i++) {
-		fila.eq(posicionCar[i]).addClass('delete');
+		fila[posicionCar[i]].addClass('delete');
 	}
 }
+
 
 
 //Puntuacion del juego
