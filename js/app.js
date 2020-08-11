@@ -243,14 +243,47 @@ function intecambioC(event, arrastre) {
 	var soltarO = soltar.attr('src');
 	arrastre.attr('src', soltarO);
 	soltar.attr('src', arrastreO);
-
 }
+
+
+//Si los elementos se juntan desaparecen automaticamente
+function comprobar(result) {
+	if (result) {
+		tablero();
+	}
+}
+
+
+function borradoAutomatico() {
+	
+	$('img.delete').effect('pulsate', 200);
+	$('img.delete').animate({
+			opacity: '0'
+		}, {
+			duration: 150
+		})
+		.animate({
+			opacity: '0'
+		}, {
+			duration: 200,
+			complete: function () {
+					.then(comprobar)
+			},
+			queue: true
+		});
+}
+
+
 
 
 // verifica los caramelos que se pueden borrar
 function validarIguales() {
 	revisaCol();
 	revisaFil();
+	//Si hay dulces que borrar
+	if ($('img.delete').length !== 0) {
+		borradoAutomatico();
+	}
 	
 }
 
