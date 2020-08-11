@@ -379,6 +379,9 @@ function borrarCaramelo() {
 	})
 }
 
+
+
+
 // inicia el juego
 function inicia_juego() {
 
