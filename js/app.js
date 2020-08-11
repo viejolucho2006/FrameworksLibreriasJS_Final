@@ -230,6 +230,12 @@ function moverDulce(){
 	activarMover();
 }
 
+function desactivarMover() {
+	$('img').draggable('disable');
+	$('img').droppable('disable');
+}
+
+
 function activarMover() {
 	$('img').draggable('enable');
 	$('img').droppable('enable');
@@ -255,7 +261,7 @@ function comprobar(result) {
 
 
 function borradoAutomatico() {
-	
+	desactivarMover();
 	$('img.delete').effect('pulsate', 200);
 	$('img.delete').animate({
 			opacity: '0'
@@ -267,10 +273,26 @@ function borradoAutomatico() {
 		}, {
 			duration: 200,
 			complete: function () {
+				borrarCaramelo()
 					.then(comprobar)
+					.catch(mostrarError);
 			},
 			queue: true
 		});
+}
+
+function mostrarError(error) {
+	console.log(error);
+}
+
+function borrarCaramelo() {
+	return new Promise(function (resolve, reject) {
+		if ($('img.delete').remove()) {
+			resolve(true);
+		} else {
+			reject('No se pudo eliminar...');
+		}
+	})
 }
 
 
