@@ -99,6 +99,7 @@ function Columnas(index) {
 }
 
 
+
 //Revisar los dulces que se eliminaran en la columna
 function revisaCol() {
 	for (var j = 0; j < 7; j++) {
@@ -218,7 +219,7 @@ function borraFil(posicionCar, fila) {
 
 //Puntuacion del juego
 function puntuacion(contar) {
-	var puntos = Number($('#puntos-text').text());
+	var puntos = Number($('#score-text').text());
 	switch (contar) {
 		case 3:
 			puntos += 25;
@@ -283,8 +284,10 @@ function moverDulce(){
 		containment: '.panel-tablero',
 		droppable: 'img',
 		revert: true,
-		grid: [75, 75],
-		zIndex: 15,
+		revertDuration: 500,
+		grid: [100, 100],
+		zIndex: 10,
+		
 	});
 	
 	$('img').droppable({  //llamar  a la funcion de intercambio
