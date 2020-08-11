@@ -39,9 +39,6 @@ function colorMatch(selector) {
 
 
 
-
-
-
 //Punto2 dulces aleatorios y caida con sensacion de gravedad
 function Randomica(min, max) {
 	min = Math.ceil(min); // devuelve entero mayor o igual
@@ -243,7 +240,41 @@ function puntuacion(contar) {
 
 
 
+//Muestra caramelos en pantalla
+function tablero() {
+	llenado();
+}
 
+function llenado() {
+	var top = 6;
+	var column = $('[class^="col-"]');
+
+	column.each(function () {
+		var caramelos = $(this).children().length;
+		var agrega = top - caramelos;
+		for (var i = 0; i < agrega; i++) {
+			var caramelo = Randomica(1, 5);
+			if (i === 0 && caramelos < 1) {
+				$(this).append('<img src="image/' + caramelo + '.png" class="element"></img>');
+			} else {
+				$(this).find('img:eq(0)').before('<img src="image/' + caramelo + '.png" class="element"></img>');
+			}
+		}
+	});
+	moverDulce();
+	validarIguales();
+}
+
+// verifica los caramelos que se pueden borrar
+function validarIguales() {
+	revisaCol();
+	revisaFil();
+	//Si hay dulces que borrar
+	if ($('img.delete').length !== 0) {
+		borradoAutomatico();
+	}
+	
+}
 
 
 // Efectos de movimiento.
@@ -280,8 +311,19 @@ function intecambioC(event, arrastre) {
 	var arrastreO = arrastre.attr('src');
 	var soltar = $(this);
 	var soltarO = soltar.attr('src');
-	arrastre.attr('src', soltarO);
-	soltar.attr('src', arrastreO);
+	arrastre.attr('src', arrastreO );
+	soltar.attr('src', soltarO);
+	
+	setTimeout(function () {
+		tablero();
+		if ($('img.delete').length === 0) {
+			arrastre.attr('src', arrastreO);
+			soltar.attr('src', soltarO);
+		} else {
+			updateMoves();
+		}
+	}, 500);
+	
 }
 
 
@@ -327,56 +369,6 @@ function borrarCaramelo() {
 		}
 	})
 }
-
-
-
-
-// verifica los caramelos que se pueden borrar
-function validarIguales() {
-	revisaCol();
-	revisaFil();
-	//Si hay dulces que borrar
-	if ($('img.delete').length !== 0) {
-		borradoAutomatico();
-	}
-	
-}
-
-
-
-
-//Muestra caramelos en pantalla
-function tablero() {
-	llenado();
-}
-
-function llenado() {
-	var top = 6;
-	var column = $('[class^="col-"]');
-
-	column.each(function () {
-		var caramelos = $(this).children().length;
-		var agrega = top - caramelos;
-		for (var i = 0; i < agrega; i++) {
-			var caramelo = Randomica(1, 5);
-			if (i === 0 && caramelos < 1) {
-				$(this).append('<img src="image/' + caramelo + '.png" class="element"></img>');
-			} else {
-				$(this).find('img:eq(0)').before('<img src="image/' + caramelo + '.png" class="element"></img>');
-			}
-		}
-	});
-	moverDulce();
-	validarIguales();
-}
-
-
-
-
-
-
-
-
 
 // inicia el juego
 function inicia_juego() {
