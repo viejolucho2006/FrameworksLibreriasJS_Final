@@ -285,8 +285,8 @@ function moverDulce(){
 		droppable: 'img',
 		revert: true,
 		revertDuration: 500,
-		grid: [100, 100],
-		zIndex: 10,
+		grid: [50, 50],
+		zIndex: 1,
 		
 	});
 	
