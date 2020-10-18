@@ -13,7 +13,7 @@ function inicio(){
 	  if (remainingSeconds < 10) { 
 		remainingSeconds = "0" + remainingSeconds; 
 	  } 
-	  document.getElementById('timer').innerHTML = "0"+minutes + ":" +     remainingSeconds; 
+	  document.getElementById('timer').innerHTML = "0"+minutes + ":" +     remainingSeconds;  // formato de tiempo
 	  if (seconds == 0) { 
 		clearInterval(countdownTimer); 
 		$('div.panel-tablero, div.time').hide();
